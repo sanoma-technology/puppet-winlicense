@@ -10,6 +10,7 @@ class winlicense ($key) {
 	if ( $key and $licensestatus and $licensestatus != 'Licensed' ) {
 		exec { 'set_license':
 			command => "C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -ExecutionPolicy RemoteSigned -NoProfile -NonInteractive -NoLogo -File c:/Scripts/SetWindowsKey.ps1 ${key}",
+			require => File['c:/Scripts/SetWindowsKey.ps1']
 		}	
 	}
 }
